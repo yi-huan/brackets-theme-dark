@@ -1,0 +1,336 @@
+/**
+ * 暗色主题，部分参考 visual studio
+ * 
+ * 李南书
+ * lns_yh@hotmail.com
+ */
+
+
+
+@text: #ddd;
+
+@background: #1e1e1e;
+@foreground: #ddd;
+
+/**
+ *  代码区 
+ */
+
+// 整个背景
+.CodeMirror,
+.CodeMirror-scroll {
+	background-color: @background;
+	color: @foreground;
+	font-family: Consolas, 'SourceCodePro-Medium', monaco, monospace, 'Noto Sans CJK TC Thin', 'Microsoft YaHei UI Light';
+	line-height: 1.6;
+}
+// 当前行
+.CodeMirror-focused .CodeMirror-activeline-background {
+	outline: 1px solid #282828 !important;
+	//outline: 2px solid #ddd;
+	background: #0f0f0f;
+}
+
+.show-line-padding .CodeMirror-focused .CodeMirror-activeline-background {
+	box-shadow: inset 15px 0 0 0 #000;
+}
+
+.CodeMirror-focused .CodeMirror-activeline {
+	// 当前行左侧
+	.CodeMirror-gutter-elt {
+		background: rgba(0, 0, 0, 0.2);
+		color: #fff;
+	}
+	.inline-widget .CodeMirror-gutter-elt {
+		color: #767676;    
+	}
+}
+
+
+.cm-atom,
+.cm-string,
+.cm-string-2,
+.cm-hr {
+	color: #d89333;
+}
+.cm-number,
+.cm-attribute,
+.cm-plus {
+	color: #85a300;
+}
+.cm-def,
+.cm-property {
+	color: #b77fdb;
+}
+.cm-variable,
+.cm-variable-2,
+.cm-variable-3,
+.cm-operator,
+.cm-meta,
+.cm-bracket {
+	color: @foreground;
+}
+.cm-comment {
+	color: #767676;
+}
+.cm-error,
+.cm-minus {
+	color: #dc322f;
+}
+.cm-header {
+	color: #d85896;
+}
+.cm-link {
+	color: #b77fdb;
+	text-decoration: none;
+}
+.cm-rangeinfo {
+	color: #6c71c4;
+}
+.cm-keyword,
+.cm-qualifier,
+.cm-builtin,
+.cm-tag,
+.cm-quote {
+	color: #6c9ef8;
+}
+
+
+/**
+* 额外的 CSS
+*/
+/*
+.CodeMirror-searching {
+background-color: #d3cd69;
+&.searching-current-match {
+background-color: #f6a644;
+}
+}*/
+// 搜索的 匹配的内容
+.CodeMirror-searching {
+	color: #ddd !important;
+	&.searching-last,
+	&.searching-first {
+		border-radius: 1px;
+		//background-color: #653306;
+		box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
+		padding: 1px 0;
+		//border: 1px solid #FFE792;
+		background-color: rgba(255, 231, 146, 0.2);
+	}
+	// 搜索内容选中 高亮
+	&.searching-current-match {
+		background-color: #ffe792;
+		color: #000 !important;
+	}
+}
+// 当前插入的光标
+.CodeMirror-cursor {
+	border-left: 1px solid @text;
+	z-index: 3;
+	//border-color: @text;
+}
+// 当前改写的光标
+.CodeMirror-overwrite .CodeMirror-cursor {
+	border-left: none !important;
+	border-bottom: 1px solid #fff;
+}
+.CodeMirror-gutters {
+	background-color: @background;
+	border-right: none;
+}
+// 行号
+.CodeMirror-linenumber {
+	color: #666;
+}
+// 当前选择内容( 被 插件 highlight selection 覆盖)
+.CodeMirror .CodeMirror-selected {
+	background-color: #264f78;
+}
+.CodeMirror-focused .CodeMirror-selected {
+	background: #0050a0;
+}
+// 插件 highlight selection 样式
+.cm-matchhighlight {
+	background: transparent;
+}
+.cm-matchingtag, // 匹配的 html标签
+.CodeMirror-matchingtag {
+	background-color: #113d6f;
+	box-shadow: 0px 0px 2px #ADC0D3;
+}
+.cm-matchingbracket, // 匹配的 { }
+.CodeMirror-matchingbracket {
+	background-color: #113d6f;
+	box-shadow: 0px 0px 4px #99b0c7;
+	color: @text !important;
+}
+.CodeMirror-matchingbracket, .CodeMirror-matchingtag {
+	/* Ensure visibility against gray inline editor background */
+	background-color: #2e5c00;
+	color: @foreground !important;
+}
+
+
+
+// 使用嵌套
+.CodeMirror {
+
+	// common 公共
+	.cm-m-javascript, // css 逗号和 {}
+	.cm-m-css,
+	.cm-m-xml,
+	.cm-m-clike,
+	.cm-m-markdown, //
+	.cm-variable,
+	.cm-variable-2,
+	.cm-variable-3 {
+		color: @text;
+	}
+	// 操作符 = / + （js下面有覆盖）
+	.cm-operator {
+		color: #b4b4b4;
+	}
+	// js . () {} ;
+	.cm-m-javascript {
+		color: #b4b4b4;
+	}
+	// 注释
+	.cm-comment {
+		color: #57a64a;
+	}
+	// js 中  '' 的字符串内容
+	.cm-string {
+		color: #d69d85;
+	}
+	// html 属性（如 class）
+	.cm-attribute {
+		color: #9cdcfe;
+	}
+	// js 中的数字（下面有覆盖）
+	.cm-number {
+		color: #b5cea8;
+	}
+	// js 中的 function 参数 及 var 定义的 名称（下面有样式覆盖）
+	.cm-def, // js 中的 var 及 function 样式
+	.cm-keyword, // html 标签
+	.cm-tag, // html 的  <!doctype html> 声明
+	.cm-meta, // style 中的属性， js 的属性值 false true
+	.cm-atom {
+		color: #569cd6;
+	}
+	// html页面 < >
+	.cm-bracket,
+	.cm-m-xml.cm-bracket,
+	.cm-m-css.cm-tag.cm-bracket {
+		color: #808080;
+	}
+	// markup  html标签中的 属性值
+	.cm-m-xml.cm-string {
+		//color: #C8C8C8;
+		color: #d7ba7d;
+	}
+	.cm-m-xml.cm-atom {
+		color: #00a0a0;
+	}
+	// style
+	.cm-m-css,
+	.cm-m-stylus {
+		// ID 样式名称
+		&.cm-builtin, // 标签 样式名称
+		&.cm-tag, // class 样式名称
+		&.cm-qualifier {
+			color: #d7ba7d;
+		}
+		// ID 样式名称
+		&.cm-builtin {
+			background-color: rgba(255, 255, 255, 0.1);
+		}
+		// 标签 样式名称
+		&.cm-tag {
+			background-color: rgba(255, 255, 255, 0.07);
+		}
+		// 伪元素，伪类 样式名称
+		&.cm-variable-3 {
+			color: #ffc600;
+		}
+		// 样式的 属性名称
+		&.cm-property {
+			color: #9cdcfe;
+		}
+		// 样式的 !important , 颜色名 等值
+		&.cm-keyword {
+			//color: @text;
+			color: #ffc600;
+		}
+		// style 中的属性值
+		&.cm-atom {
+			//color: @text;
+			color: cornflowerblue;
+		}
+		// style 中的属性值 以 @ 开头
+		&.cm-variable-2 {
+			color: #c563bd;
+		}
+	}
+	
+	// script
+	// js的符号 = + - / *
+	.cm-m-javascript.cm-operator {
+		color: #b4b4b4;
+	}
+	// js 中的 function名、参数 及 var 定义的 变量
+	.cm-m-javascript.cm-def, // js 的全局变量、函数 （window，document等自定义的）
+	.cm-m-javascript.cm-variable, // js 的对象、 （window，document等自定义的）
+	.cm-m-javascript.cm-variable-2,
+	.cm-m-javascript.cm-variable-3, // js 对象的属性值或者方法名
+	.cm-m-javascript.cm-property {
+		color: @text;
+	}
+	// js 的全局变量、函数 （window，document等自定义的）
+	.cm-m-javascript.cm-variable {
+		color: darkturquoise;
+	}
+	// js 的对象、 （window，document等自定义的）
+	.cm-m-javascript.cm-variable-2 {
+		color: #b2c3c3;
+	}
+	.cm-m-javascript.cm-variable-3 {
+		color: #ffc600;
+	}
+	// js 对象的属性值或者方法名
+	.cm-m-javascript.cm-property {
+		color: #9effff;
+	}
+	// json properties
+	// 对象中的 属性名
+	.cm-m-javascript.cm-string.cm-property {
+		color: #d7ba7d;
+	}
+	// js 中的数字
+	.cm-m-javascript.cm-number {
+		color: #b5cea8;
+	}
+	.cm-m-javascript.cm-string-2 {
+		color: #9a5334;
+	}
+	// php
+	.cm-m-clike.cm-builtin {
+		color: #569cd6;
+	}
+	.cm-m-clike.cm-variable-2 {
+		//color: #d26bca;
+	}
+	// markdown
+	.cm-m-markdown.cm-comment {
+		color: #d69d85;
+	}
+	.cm-m-markdown.cm-link {
+		color: #c563bd;
+	}
+	.cm-m-markdown.cm-header {
+		color: #808080;
+	}
+
+
+}

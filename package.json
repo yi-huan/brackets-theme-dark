@@ -1,0 +1,15 @@
+{
+	"name": "lns.theme-dark",
+	"title": "lns.theme dark",
+	"description": "暗色主题，部分参考 visual studio",
+	"homepage": "https://github.com/yi-huan/brackets-theme-dark",
+	"version": "1.0.0",
+	"author": "李南书 <lns_yh@hotmail.com> (https://github.com/yi-huan)",
+	"license": "MIT",
+	"theme": {
+		"file": "theme.less",
+		"dark": true,
+		"addModeClass": true
+	},
+	"keywords": ["theme"]
+}
